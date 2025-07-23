@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Invaders - Autómatas y Oraciones</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="game-container">
+        <!-- Panel lateral izquierdo -->
+        <div class="side-panel">
+            <h2>🤖 Análisis de Autómatas</h2>
+            
+            <div class="word-analysis">
+                <h3>Palabra Actual</h3>
+                <div id="current-word" class="current-word"></div>
+                <div id="word-type" class="word-type"></div>
+                <div id="word-status" class="word-status"></div>
+            </div>
+
+            <div class="sentence-analysis">
+                <h3>🏗️ Construcción de Oración</h3>
+                
+                <!-- Indicadores de progreso circular -->
+                <div class="sentence-progress">
+                    <div class="step" id="step-articulo">📄</div>
+                    <div class="step" id="step-sustantivo">🏠</div>
+                    <div class="step" id="step-verbo">⚡</div>
+                </div>
+                
+                <!-- Visualización de la oración -->
+                <div class="sentence-display">
+                    <div class="sentence-parts-display">
+                        <div class="sentence-part articulo">
+                            <div class="label">Artículo</div>
+                            <div class="value" id="articulo-value">_</div>
+                        </div>
+                        <div class="sentence-part sustantivo">
+                            <div class="label">Sustantivo</div>
+                            <div class="value" id="sustantivo-value">_</div>
+                        </div>
+                        <div class="sentence-part verbo">
+                            <div class="label">Verbo</div>
+                            <div class="value" id="verbo-value">_</div>
+                        </div>
+                    </div>
+                    <div id="sentence-status" class="sentence-status">📄 Esperando artículo...</div>
+                </div>
+            </div>
+
+            <div class="vocabulary">
+                <h3>📚 Vocabulario</h3>
+                <div class="vocab-section">
+                    <h4>Artículos</h4>
+                    <div id="articulos-list" class="vocab-list"></div>
+                </div>
+                <div class="vocab-section">
+                    <h4>Sustantivos</h4>
+                    <div id="sustantivos-list" class="vocab-list"></div>
+                </div>
+                <div class="vocab-section">
+                    <h4>Verbos</h4>
+                    <div id="verbos-list" class="vocab-list"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Área principal del juego -->
+        <div class="game-area">
+            <div class="game-header">
+                <div class="score-panel">
+                    <div class="score">
+                        <span class="label">Puntos:</span>
+                        <span id="score">0</span>
+                    </div>
+                    <div class="lives">
+                        <span class="label">Vidas:</span>
+                        <span id="lives">5</span>
+                    </div>
+                    <div class="bonus">
+                        <span class="label">Bonus Oración:</span>
+                        <span id="sentence-bonus">0</span>
+                    </div>
+                </div>
+                <div class="game-title">
+                    <h1>🚀 SPACE INVADERS</h1>
+                    <p>Autómatas Finitos Deterministas</p>
+                </div>
+            </div>
+
+            <div id="canvasContainer" class="canvas-container">
+                <canvas id="gameCanvas"></canvas>
+            </div>
+
+            <div class="input-area">
+                <div class="input-container">
+                    <input type="text" id="wordInput" placeholder="Escribe una palabra..." maxlength="20" autocomplete="off">
+                    <button id="fireButton">🚀 DISPARAR</button>
+                </div>
+                <div class="typing-feedback">
+                    <div id="typing-preview" class="typing-preview"></div>
+                    <div id="typing-status" class="typing-status"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para mostrar autómata -->
+    <div id="automataModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>🤖 Estructura del Autómata</h2>
+            <div class="tabs">
+                <button class="tab-button active" onclick="showTab('words')">Autómata de Palabras</button>
+                <button class="tab-button" onclick="showTab('sentences')">Autómata de Oraciones</button>
+            </div>
+            <div id="words-tab" class="tab-content active">
+                <div id="word-automata-display"></div>
+            </div>
+            <div id="sentences-tab" class="tab-content">
+                <div id="sentence-automata-display"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="automata.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
