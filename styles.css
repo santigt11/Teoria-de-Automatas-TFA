@@ -583,7 +583,6 @@ body {
     height: 100vh;
     overflow: hidden;
     order: 2;
-    padding-top: 90px; /* Separación superior para que no quede pegado al navegador */
 }
 
 .game-header {
