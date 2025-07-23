@@ -27,7 +27,7 @@ body {
     background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(15px);
     border-left: 3px solid #00ffff;
-    padding: 15px;
+    padding: 35px 15px 15px 15px; /* padding-top aumentado */
     overflow-y: auto;
     box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
     position: relative;
@@ -52,15 +52,18 @@ body {
 /* Puntuación en el panel derecho */
 .score-panel-right {
     background: linear-gradient(135deg, rgba(0, 255, 255, 0.15), rgba(0, 128, 255, 0.08));
-    border: 3px solid rgba(0, 255, 255, 0.6);
-    border-radius: 15px;
-    padding: 25px;
-    margin-bottom: 25px;
+    border: 2px solid rgba(0, 255, 255, 0.5);
+    border-radius: 12px;
+    padding: 16px 10px 12px 10px; /* Mucho más compacto */
+    margin-bottom: 14px;
     text-align: center;
     box-shadow: 
-        0 8px 32px rgba(0, 255, 255, 0.3),
-        inset 0 2px 16px rgba(0, 255, 255, 0.1);
+        0 4px 16px rgba(0, 255, 255, 0.18),
+        inset 0 1px 8px rgba(0, 255, 255, 0.07);
     position: relative;
+    max-width: 95%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .score-panel-right::before {
@@ -580,6 +583,7 @@ body {
     height: 100vh;
     overflow: hidden;
     order: 2;
+    padding-top: 90px; /* Separación superior para que no quede pegado al navegador */
 }
 
 .game-header {
