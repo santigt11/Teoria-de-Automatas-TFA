@@ -73,15 +73,15 @@
                 <div class="score-panel">
                     <div class="score">
                         <span class="label">Puntos:</span>
-                        <span id="score">0</span>
+                        <span id="score-header">0</span>
                     </div>
                     <div class="lives">
                         <span class="label">Vidas:</span>
-                        <span id="lives">5</span>
+                        <span id="lives-header">5</span>
                     </div>
                     <div class="bonus">
                         <span class="label">Bonus Oración:</span>
-                        <span id="sentence-bonus">0</span>
+                        <span id="sentence-bonus-header">0</span>
                     </div>
                 </div>
                 <div class="game-title">
@@ -102,6 +102,42 @@
                 <div class="typing-feedback">
                     <div id="typing-preview" class="typing-preview"></div>
                     <div id="typing-status" class="typing-status"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Panel lateral derecho para puntuación -->
+        <div class="right-panel">
+            <div class="score-panel-right">
+                <h2>📊 Puntuación</h2>
+                <div class="score-display">
+                    <div class="score-item-large">
+                        <span class="label">Puntos Totales</span>
+                        <span class="value" id="score">0</span>
+                    </div>
+                    <div class="score-item-large">
+                        <span class="label">Bonus Oración</span>
+                        <span class="value" id="sentence-bonus">0</span>
+                    </div>
+                    <div class="lives-display-large">
+                        <span class="label">Vidas Restantes</span>
+                        <div class="hearts-container" id="lives-hearts">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="word-analysis">
+                <h3>🎯 Estado del Juego</h3>
+                <div style="text-align: center; padding: 15px;">
+                    <div style="font-size: 14px; color: #00ffff; margin-bottom: 10px;">
+                        <strong>Objetivo:</strong>
+                    </div>
+                    <div style="font-size: 12px; color: #cccccc; line-height: 1.5;">
+                        Destruye las palabras en orden:<br>
+                        📄 Artículo → 🏠 Sustantivo → ⚡ Verbo<br>
+                        para construir oraciones completas
+                    </div>
                 </div>
             </div>
         </div>

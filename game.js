@@ -7,8 +7,8 @@ class Nave {
     constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.ancho = 45; // Reducido de 60 a 45
-        this.alto = 30;  // Reducido de 40 a 30
+        this.ancho = 28; // Reducido de 35 a 28
+        this.alto = 20;  // Reducido de 25 a 20
         this.velocidad = 8;
         this.disparos = [];
         this.moviendose = false;
@@ -203,8 +203,8 @@ class Disparo {
         this.velocidad = 10;
         this.palabra = palabra.toUpperCase();
         this.activo = true;
-        this.ancho = 6;
-        this.alto = 20;
+        this.ancho = 4;  // Reducido de 6 a 4
+        this.alto = 16;  // Reducido de 20 a 16
         this.brillo = 1;
         this.animacionTime = 0;
         this.trail = []; // Estela del disparo
@@ -368,10 +368,10 @@ class PalabraCayendo {
         ctx.scale(this.escala * this.pulso, this.escala * this.pulso);
         
         // Medir texto con fuente más pequeña
-        ctx.font = '18px Orbitron, monospace';
+        ctx.font = '12px Orbitron, monospace';
         const medidas = ctx.measureText(this.palabra);
-        const ancho = medidas.width + 20;
-        const alto = 28;
+        const ancho = medidas.width + 14;
+        const alto = 20;
         
         // Aura exterior
         this.dibujarAura(ancho, alto);
@@ -504,13 +504,13 @@ class PalabraCayendo {
     }
 
     obtenerRect() {
-        ctx.font = '18px Orbitron, monospace'; // Mantener consistencia
+        ctx.font = '12px Orbitron, monospace'; // Mantener consistencia
         const medidas = ctx.measureText(this.palabra);
         return {
-            x: this.x - medidas.width / 2 - 10,
-            y: this.y - 14,
-            width: medidas.width + 20,
-            height: 28
+            x: this.x - medidas.width / 2 - 6, // Ajustado para nueva dimensión
+            y: this.y - 9, // Ajustado para nueva altura
+            width: medidas.width + 12, // Igual que en dibujar()
+            height: 18 // Igual que en dibujar()
         };
     }
 }
@@ -1490,7 +1490,22 @@ class Juego {
 
     actualizarUI() {
         document.getElementById('score').textContent = this.puntuacion;
-        document.getElementById('lives').textContent = this.vidas;
+        
+        // Actualizar vidas como corazones grandes
+        const livesContainer = document.getElementById('lives-hearts');
+        livesContainer.innerHTML = '';
+        for (let i = 0; i < this.vidas; i++) {
+            const heart = document.createElement('span');
+            heart.className = 'life-heart-large';
+            heart.textContent = '❤️';
+            livesContainer.appendChild(heart);
+        }
+        
+        // Actualizar bonus si existe
+        const bonusElement = document.getElementById('sentence-bonus');
+        if (bonusElement) {
+            bonusElement.textContent = this.bonusOracion || 0;
+        }
     }
 
     finalizarJuego() {
@@ -1523,21 +1538,21 @@ function gameLoop() {
 
 // Función para redimensionar canvas
 function resizeCanvas() {
-    const container = document.querySelector('.game-area');
-    const canvasContainer = document.getElementById('canvasContainer');
+    // Dimensiones responsivas basadas en el tamaño de pantalla
+    let canvasWidth, canvasHeight;
     
-    // Obtener dimensiones del contenedor
-    const containerRect = canvasContainer.getBoundingClientRect();
-    const maxWidth = containerRect.width - 40; // Padding
-    const maxHeight = Math.min(containerRect.height - 40, window.innerHeight * 0.7);
-    
-    // Calcular dimensiones manteniendo proporción 4:3 pero más grande
-    let canvasWidth = Math.min(maxWidth, 1000); // Aumentado de 800 a 1000
-    let canvasHeight = (canvasWidth * 3) / 4;
-    
-    if (canvasHeight > maxHeight) {
-        canvasHeight = maxHeight;
-        canvasWidth = (canvasHeight * 4) / 3;
+    if (window.innerWidth <= 600) {
+        canvasWidth = 400;
+        canvasHeight = 300;
+    } else if (window.innerWidth <= 900) {
+        canvasWidth = 500;
+        canvasHeight = 375;
+    } else if (window.innerWidth <= 1200) {
+        canvasWidth = 650;
+        canvasHeight = 487;
+    } else {
+        canvasWidth = 800;
+        canvasHeight = 600;
     }
     
     // Aplicar dimensiones
@@ -1546,7 +1561,7 @@ function resizeCanvas() {
     canvas.style.width = canvasWidth + 'px';
     canvas.style.height = canvasHeight + 'px';
     
-    console.log(`📐 Canvas redimensionado: ${canvasWidth}x${canvasHeight}`);
+    console.log(`📐 Canvas configurado: ${canvasWidth}x${canvasHeight} para pantalla ${window.innerWidth}px`);
 }
 
 // Inicialización
